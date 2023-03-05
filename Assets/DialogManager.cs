@@ -9,47 +9,73 @@ public class DialogManager : MonoBehaviour
 
     public TextMeshProUGUI dialogText;
     int x = 200;
+    int i = 0;
+    public string[] list;
+    public GameObject duckPort;
+    public GameObject convPartner;
+    public GameObject theBox;
+    private bool imageIsDuck;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        //dialogText.text = "";
-        //transform.position = new Vector3(100000, 100000, 100000);
-        dialogText.text = "XA";
+        hidDialog();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKey(KeyCode.Return))
+        
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            if ((dialogText.text == "") && (x >= 200))
+            if (theBox.activeSelf)
             {
-                showDialog();
-                x = 0;
-            }
-            else if ((dialogText.text != "") && (x >= 200))
-            {
-                hidDialog();
-                x = 0;
+                i++;
+                if (i >= list.Length) hidDialog();
+                else
+                {
+                    showDialog();
+                }
             }
         }
 
-        x = x + 1;
     }
 
     void hidDialog()
     {
-        transform.position = new Vector3(100000, 100000, 100000);
-
+        duckPort.SetActive(false);
+        convPartner.SetActive(false);
+        theBox.SetActive(false);
+        i = 0;
         dialogText.text = "";
     }
 
     void showDialog()
     {
-        transform.position = new Vector3(0.3692896f, -1.339681f, 0.02488603f);
-        dialogText.text = "Good";
+        dialogText.text = list[i];
+        if (imageIsDuck == true)
+        {
+            duckPort.SetActive(true);
+            convPartner.SetActive(false);
+            theBox.SetActive(true);
+            imageIsDuck = false;
+        }
+        else
+        {
+            duckPort.SetActive(false);
+            convPartner.SetActive(true);
+            theBox.SetActive(true);
+            imageIsDuck = true;
+        }
+    }
+
+    public void makeDialog(string[] l, bool dFirst)
+    {
+        list = l;
+        imageIsDuck = dFirst;
+        i = 0;
+        showDialog();
     }
 }

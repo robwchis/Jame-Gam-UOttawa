@@ -73,11 +73,12 @@ public class Movement : MonoBehaviour
 
         sr.sprite = spr;
 
+
+
     }
     // Update is called once per frame
     void Update()
     {
-
     }
 
 

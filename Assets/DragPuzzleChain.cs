@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragPuzzle : MonoBehaviour
+public class DragPuzzleChain : MonoBehaviour
 {
-    public bool startOff;
+
+    public bool startOff = false;
     public string requiredId = "";
     public bool destroySelfOnSolve = false;
     public bool destroyKeyOnSolve = false;
-    public GameObject pickupToEnable;
+    public GameObject dragToEnable;
     public bool giveObjectOnSolve = false;
     public string giveId = "";
     public GameObject magGlass = null;
@@ -34,7 +35,7 @@ public class DragPuzzle : MonoBehaviour
     public void Unlock()
     {
         if (destroySelfOnSolve) Destroy(this.gameObject);
-        try { pickupToEnable.SetActive(true); } catch { }
+        try { dragToEnable.SetActive(true); } catch { }
         if (giveObjectOnSolve)
         {
             GameObject newy = GameObject.Instantiate(magGlass);

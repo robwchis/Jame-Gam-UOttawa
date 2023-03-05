@@ -11,6 +11,7 @@ public class PickupActor : MonoBehaviour
     public GameObject magnifyingGlass;
     public GameManager gm;
     public bool startDisabled = false;
+    public Sprite sToBe = null;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class PickupActor : MonoBehaviour
                 gm.GetComponent<GameManager>().inventory.Add(newy);
                 newy.GetComponent<ItemActor>().pos = gm.GetComponent<GameManager>().inventory.Count;
                 newy.GetComponent<ItemActor>().id = this.id;
+                newy.GetComponent<SpriteRenderer>().sprite = sToBe;
                 newy.transform.position = new Vector3(newy.GetComponent<ItemActor>().pos * 1.2f - 8.2f, 4.5f);
                 Destroy(this.gameObject);
             }

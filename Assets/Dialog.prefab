@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogText: {fileID: 5612874456545316236}
-  diaSquare: {fileID: 4153625248496993289}
-  diaImage: {fileID: 5151140579790149453}
-  squareRen: {fileID: 0}
-  imageRen: {fileID: 0}
+  list: []
+  duckPort: {fileID: 0}
+  convPartner: {fileID: 0}
+  theBox: {fileID: 0}
 --- !u!1 &4153625248496993289
 GameObject:
   m_ObjectHideFlags: 0
