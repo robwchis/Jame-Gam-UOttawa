@@ -53,9 +53,40 @@ public class ItemActor : MonoBehaviour
         {
             dragged = false;
             gMan.dragging = false;
+            foreach (GameObject g in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+            {
+                try
+                { 
+                    DragPuzzle dp = g.GetComponent<DragPuzzle>(); 
+                    if (id == dp.requiredId)
+                    {
+                        if (Mathf.Abs(transform.position.x - g.transform.position.x) < 1 &&
+                            Mathf.Abs(transform.position.y - g.transform.position.y) < 1)
+                        {
+                            dp.Unlock();
+                            if (dp.destroyKeyOnSolve) {
+                                destroySelf();
+                            }
+                        }
+                    }
+                
+                } catch { }
+            }
             transform.position = new Vector3(pos*1.2f - 8.2f, 4.5f);
         }
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("AAAAAA");
+        try
+        {
+            DragPuzzle objIn = collision.gameObject.GetComponent<DragPuzzle>();
+            Debug.Log("AAAAAA");
+        }
+        catch
+        { return; }
     }
 
     public void destroySelf()

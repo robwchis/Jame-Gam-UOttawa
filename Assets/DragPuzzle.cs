@@ -9,6 +9,8 @@ public class DragPuzzle : MonoBehaviour
     public bool destroySelfOnSolve = false;
     public bool destroyKeyOnSolve = false;
 
+    private ItemActor objIn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,21 +23,8 @@ public class DragPuzzle : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Unlock()
     {
-
-        ItemActor i;
-        try
-        {
-            i = collision.gameObject.GetComponent<ItemActor>();
-            Debug.Log("AAAAAA");
-        }
-        catch
-        { return; }
-        if (i.id == requiredId)
-        {
-            if (destroySelfOnSolve) Destroy(this.gameObject);
-            if (destroySelfOnSolve) Destroy(collision.gameObject);
-        }
+        if (destroySelfOnSolve) Destroy(this.gameObject);
     }
 }
