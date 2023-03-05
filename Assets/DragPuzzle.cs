@@ -8,6 +8,7 @@ public class DragPuzzle : MonoBehaviour
     public string requiredId = "";
     public bool destroySelfOnSolve = false;
     public bool destroyKeyOnSolve = false;
+    public GameObject pickupToEnable;
 
     private ItemActor objIn;
 
@@ -26,5 +27,6 @@ public class DragPuzzle : MonoBehaviour
     public void Unlock()
     {
         if (destroySelfOnSolve) Destroy(this.gameObject);
+        try { pickupToEnable.SetActive(true); } catch { }
     }
 }

@@ -10,11 +10,12 @@ public class PickupActor : MonoBehaviour
     public string id;
     public GameObject magnifyingGlass;
     public GameManager gm;
+    public bool startDisabled = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (startDisabled) { this.gameObject.SetActive(false);  }
     }
 
     // Update is called once per frame
