@@ -38,10 +38,9 @@ public class ItemActor : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !gMan.dragging)
         {
             Vector3 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mPos2D = new Vector2(mPos.x, mPos.y);
 
-            RaycastHit2D hit = Physics2D.Raycast(mPos2D, Vector2.zero);
-            if (hit.collider.gameObject == this.gameObject)
+            if (Mathf.Abs(mPos.x - gameObject.transform.position.x) < 1 &&
+                Mathf.Abs(mPos.y - gameObject.transform.position.y) < 1)
             {
                 dragged = true;
                 gMan.dragging = true;

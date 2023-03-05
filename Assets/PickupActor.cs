@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class PickupActor : MonoBehaviour
 {
@@ -27,8 +28,11 @@ public class PickupActor : MonoBehaviour
                 Mathf.Abs(mPos.y - gameObject.transform.position.y) < 1)
             { 
                 GameObject newy = GameObject.Instantiate(magnifyingGlass);
+                gm.GetComponent<GameManager>().inventory.Add(newy);
                 newy.GetComponent<ItemActor>().pos = gm.GetComponent<GameManager>().inventory.Count;
                 newy.GetComponent<ItemActor>().id = this.id;
+                newy.transform.position = new Vector3(newy.GetComponent<ItemActor>().pos * 1.2f - 8.2f, 4.5f);
+                Destroy(this.gameObject);
             }
 
         }
