@@ -31,6 +31,7 @@ public class roomManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (map.activeSelf) Application.Quit();
             pharma.SetActive(false);
             coffee.SetActive(false);
             river.SetActive(false);
